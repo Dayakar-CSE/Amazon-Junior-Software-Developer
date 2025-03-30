@@ -1,3 +1,4 @@
+//DrivingSimulationLab.java
 import java.util.Scanner;
 
 // DrivingSimulation class implements the Driving Simulation which includes various actions like turn the engine on/off, accelerate (i.e. increase the speed) and apply the breaks.
