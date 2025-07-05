@@ -35,8 +35,8 @@ public class Main {
             System.out.println("Congratulations "+learner.name
                     +" you have successfully passed the "+title+" course");
         else
-            System.out.println("Congratulations "+learner.name
-                    +" you have successfully completed the "+title+" course");
+            System.out.println(learner.name
+                    +" you have Failed the "+title+" course");
         
         
         /*
