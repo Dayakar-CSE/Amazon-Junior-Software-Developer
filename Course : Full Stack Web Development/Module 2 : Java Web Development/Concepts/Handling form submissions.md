@@ -78,7 +78,36 @@ In Spring MVC, the @PostMapping annotation maps specific URLs to handler methods
 
 Below is an example controller class, ProductController.java, which includes methods to handle product display, form display, and form submission:
 
-12345678910111213141516171819202122232425262728293031323334353637383940
+// ProductController.java
+package com.coffeeshop.menu.controller;
+
+import com.coffeeshop.menu.model.Product;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+public class ProductController {
+    private List<Product> productsList = new ArrayList<>(List.of(
+        new Product(1, "Espresso", 2.50),
+        new Product(2, "Latte", 3.50),
+        new Product(3, "Croissant", 2.00),
+        new Product(4, "Chocolate Muffin", 2.25),
+        new Product(5, "Americano", 2.75)
+    ));
+
+    @RequestMapping("/")  // Maps to the URL http://localhost:8080/
+    public String listProducts(Model productListModel) {
+        productListModel.addAttribute("products", productsList);  // Add productsList to the model
+        return "menu";  // Returns the view name (HTML file name)
+    }
+
+    @RequestMapping("/add")  // Maps to the URL http://localhost:8080/add
+    public String showProductForm(Model productAddFormModel) {
+        productAddFormModel.addAttribute("product", new Product());  // Add a new product instance to the model
         return "add-new-product";
     }
 
@@ -89,6 +118,7 @@ Below is an example controller class, ProductController.java, which includes met
         return "redirect:/";  // Redirects back to the main product list view
     }
 }
+
 
 In this example, @RequestMapping("/") maps to the homepage URL, displaying the current product list. The @RequestMapping("/add") method loads the form view where users can enter product details. Finally, @PostMapping("/addNewProduct") handles the form submission, adding the new product to productsList and redirecting to the main product list view to display the updated list.
 
