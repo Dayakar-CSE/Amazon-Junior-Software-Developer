@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Shop Menu</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+    <body>
+    <div>
+        <h1>Welcome to the Coffee Shop!</h1>
+        <h2>Our Menu</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    
+                    <a th:href="@{/showFormForUpdate/{id}(id=${product.id})}" class="button">Update</a>
+                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="button">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/showNewProductForm}" class="button">Add Menu Item</a>
+    </div>
+    </body>
+</html>

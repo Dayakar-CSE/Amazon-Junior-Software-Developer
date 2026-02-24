@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Update Product in the Menu
+  </title>
+  <link rel="stylesheet" href="/css/add-product-styles.css">
+</head>
+<body>
+<h1>
+  Update Item In Menu
+</h1>
+<hr>
+<!--TODO 14: create an html file for the update form with post method and the same action as adding new item-->
+<form action="#" th:action="@{/saveProduct}" th:object="${product}" method="post">
+
+  <!--TODO 15: add a hidden input field to keep track of  id-->
+  <input type="hidden" th:field="*{id}" />
+  <label for="name">
+    Name:
+  </label>
+  <!--TODO 16: use thyme leaf object and field tags-->
+  <input type="text" id="name" name="name" th:field="*{name}">
+  <br>
+  <label for="price">
+    Price:
+  </label>
+  <input type="text" id="price" name="price" th:field="*{price}">
+  <br>
+  <button type="submit">
+    Update Item
+  </button>
+</form>
+</body>
+</html>
