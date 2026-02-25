@@ -1,0 +1,153 @@
+
+Amazon
+Understanding the project structure
+Introduction
+Think back to the house-building analogy from the lab Creating a new Spring Boot project in IntelliJ IDEA: rather than crafting every component from scratch, you’d use pre-built pieces like doors, windows, and walls to streamline the process. Similarly, by setting up your Spring Boot project with Spring Initializr and IntelliJ IDEA, you’ve established a foundational structure using pre-configured tools and components. With Maven as your building tool and a few basic settings in place, you’re now ready to explore the overall structure of a Spring Boot project in this reading, where we’ll look at how each piece fits together to support your application—just like assembling the framework of a house.
+
+When you use Spring Initializer to generate a new Spring Boot project,  Spring Initializr automatically creates a well-organized project structure that follows best practices. This structure is designed to help developers quickly find their way around the code and manage the project efficiently. Let’s explore each component of this generated structure to understand its purpose and how it facilitates rapid development.
+
+Explore an example of a project structure overview
+Here is the Spring Boot project structure that you generated in Spring Initializr in the lab  Creating a new Spring Boot project in IntelliJ IDEA:
+
+The hierarchical Spring Boot project structure.
+Key components of the structure
+Understanding the project structure is essential when building a Spring Boot application. Each directory and file serves a specific purpose, from organizing your main code and resources to managing configurations and tests. In this section, you’ll explore the following components of a typical Spring Boot project setup:
+
+ src/main/java Directory
+
+src/main/resources Directory
+
+src/test/java Directory
+
+Root files (mvnw, mvnw.cmd, and pom.xml)
+
+Explore the following screenshot of the project structure, locating the directories and root files before reading further.
+
+The project structure in a Spring Boot application displayed in Visual Studio Code.
+src/main/java Directory: This is the main source code directory of your application. It contains your Java classes, including your application's entry point, typically like the ExampleApplication.java. This class contains the main() method that boots up your Spring Boot application. As your project grows, you’ll organize your code here into packages for controllers, services, repositories, and models, making it easy to maintain and scale.
+
+Review the following image for a breakdown of the src/main/java Directory.
+
+The breakdown of the src/main/java Directory in VS Code.
+src/main/resources Directory: This directory contains all the non-code files required for your application, such as configuration files and static resources. Key subdirectories and files include:
+
+Static: Holds static files like HTML, CSS, JavaScript, and image files.
+
+Templates: Contains server-side templates for generating dynamic web pages using technologies like Thymeleaf or FreeMarker.
+
+Application.properties: This is the main configuration file for your Spring Boot application, where you define properties like database connections, server port, and other application settings. In Spring Boot, the default configuration file name begins with application, but it can have either a .properties or a .yml extension. In this course,  application.properties is used but developers may use application.yml as an alternative.  
+
+src/test/java Directory: This directory is dedicated to unit and integration tests. It follows a similar package structure as the main codebase, ensuring that each part of the application has corresponding tests. Specifically, it includes tests in your project structure from the beginning and encourages a TDD approach, ensuring higher code quality and fewer bugs.
+
+Root files (mvnw, mvnw.cmd, and pom.xml): 
+
+mvnw and mvnw.cmd: These are Maven wrapper files that allow you to run Maven commands without needing Maven pre-installed on your system. They ensure that everyone on your team uses the same Maven version, leading to consistent builds.
+
+pom.xml: This is the Maven build configuration file. It manages your project's dependencies, plugins, and other build settings. The pom.xml file is a critical part of your project because it ensures that all required libraries are included and properly configured.
+
+Benefits of the Spring Boot project structure
+The Spring Boot project structure is designed to enhance productivity and scalability in application development. Following this standardized layout allows developers to gain several advantages that simplify coding and ensure a maintainable, scalable codebase. 
+
+Let’s review some key advantages:
+
+Standardization: The standardized layout makes it easier for developers to collaborate, even if they are new to the project. A consistent structure ensures that everyone knows where to find things and how to add new features.
+
+Scalability: The separation of concerns in the project structure means that as your application grows, you can quickly expand its features without needing to reorganize your codebase.
+
+Quick start: The predefined setup minimizes the time you spend on configurations and lets you focus on building features and writing business logic right away.
+
+Challenge: Add a new maven plugin
+To deepen your understanding of the Maven build process, let’s add a new plugin to the pom.xml file: the Maven Checkstyle Plugin. Checkstyle is a valuable tool for enforcing coding standards as it automatically checks your Java code against a set of predefined rules, flagging any deviations. Using Checkstyle helps maintain code quality and consistency, making it an excellent addition to any project.
+
+This challenge will help you understand how to add new dependencies to your project and serve as a guide to how Maven automatically downloads and includes the required libraries once the dependency is added.
+
+Requirements
+Complete these steps in the interactive code block:
+
+Add the Checkstyle plugin: To extend your Spring Boot project with the Checkstyle plugin, modify the pom.xml file by adding the checkstyle-related code snippet inside the <plugins> section under the <build> element:
+
+123456789101112131415161718192021
+        </execution> 
+    </executions> 
+    <configuration>
+        <configLocation></configLocation>        
+        <failOnViolation></failOnViolation> 
+        <linkXRef></linkXRef> 
+    </configuration> 
+</plugin>
+
+<!-- Checkstyle Plugin Ends--> 
+
+Run the Checkstyle plugin: Use the following maven command to run the checkstyle validation:
+
+1
+mvn validate
+Use the Checkstyle 3.5.x as your code validation tool: You have to use the Checkstyle 3.5.x version of libraries to validate the code of your application.
+
+Tip
+
+If you want to search for implementation information, you can open the 
+maven checkstyle plugin
+.
+
+Reflection point 
+The following output reflects the desired output for the challenge. 
+
+1
+You have 0 Checkstyle violations.
+Code best practices
+
+If you didn’t get the desired output, take some time to troubleshoot your code. Errors happen to everyone, even to the best software developers. Working through them is part of the job.
+
+If you struggled, please carefully review the report generated by checkstyle for any violations. If there are violations, please follow the suggested corrections in the report. 
+
+Take a moment to reflect on the challenge you’ve completed by asking yourself these questions:
+
+What areas did I struggle with and why?
+
+How did I troubleshoot any errors (if any)?
+
+What lessons will I take forward?
+
+Download the document to review the solution after you have attempted the challenge.
+
+Conclusion
+The Spring Boot project structure generated by Spring Initializr is like a well-organized toolbox. Each component has a specific place and purpose, allowing you to build and expand your application with confidence. Following this standardized structure enables you to reduce setup time, improve code maintainability, and make it easier to collaborate with other developers. In the world of software development, a solid foundation is key to building robust applications. The Spring Boot project structure not only offers that foundation but also equips you with the tools you need to take your project from concept to reality quickly and efficiently. 
+
+
+
+
+
+
+
+
+
+
+
+—-------------- Interactive CodeBlock Starts------------------------
+<!-- Checkstyle Plugin Starts --> 
+<plugin> 
+<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> <version>3.5.0</version> 
+<executions> 
+    <execution> 
+       <id>checkstyle-validation</id> 
+       <phase>validate</phase> 
+       <goals> 
+          <goal>check</goal> 
+       </goals> 
+     </execution> 
+</executions> 
+<configuration>                                                             	<configLocation>google_checks.xml</configLocation>        
+                       <failOnViolation>true</failOnViolation> 
+           <linkXRef>false</linkXRef> 
+</configuration> 
+</plugin>
+
+
+<!-- Checkstyle Plugin Ends--> 
+
+
+—-------------- Interactive CodeBlock ends------------------------
+
+
+
