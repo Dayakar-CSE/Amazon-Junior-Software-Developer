@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item 08: Activity Personalize Shopping Cart</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1><a href="/index.html">FullStackCart</a></h1>
+      </nav>
+      <nav id="search-bar">
+        <form id="searchForm" action="/search" method="get">
+          <input
+            type="text"
+            id="searchInput"
+            name="query"
+            placeholder="search name or category"
+          />
+          <button type="submit" aria-label="Search">🔍</button>
+        </form>
+      </nav>
+      <nav id="nav-buttons">
+        <a
+          href="/add.html"
+          class="button"
+          id="add-product-button"
+          aria-label="Add Product"
+          >✏️</a
+        >
+        <a
+          href="/cart.html"
+          class="button"
+          id="add-cart-button"
+          aria-label="View Cart"
+          >🛒</a
+        >
+        <a
+          href="/login.html"
+          class="button"
+          id="logout-button"
+          aria-label="Logout"
+          >↪️</a
+        >
+      </nav>
+    </header>
+    <main id="productContainer"></main>
+    <script src="js/login.js" async></script>
+    <script src="js/index.js" async></script>
+  </body>
+</html>
