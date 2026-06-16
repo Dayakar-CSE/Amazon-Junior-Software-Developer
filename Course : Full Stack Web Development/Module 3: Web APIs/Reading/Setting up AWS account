@@ -1,0 +1,105 @@
+
+Amazon
+Setting up AWS account
+Introduction
+Imagine you’re working on a new project, a web app that you hope will eventually reach thousands, maybe even millions, of users. But here’s the challenge: if you had to buy and set up physical servers every time you wanted to test or launch something, it’d be pretty costly, not to mention a huge time sink. That’s where a cloud platform like Amazon Web Services (AWS) comes into play. 
+
+AWS provides all the resources you need right at your fingertips. So, instead of worrying about racks of servers, you can focus on building your app, knowing that as it grows, AWS can grow with it seamlessly and on-demand.
+
+In this reading, you’ll learn how to set up your own AWS account, an essential step for deploying and managing applications in the cloud. You’ll explore the registration process, how to configure billing settings, and examine the AWS Free Tier.
+
+Overview of AWS
+AWS is like an all-in-one toolbox for developers. It’s a platform that provides various services, from storage to virtual servers to databases and more, all available in the cloud. Think of it as your on-demand, pay-as-you-go setup for practically any computing need. Instead of investing in costly physical servers and spending hours on setup, AWS gives you a ready-made infrastructure that’s scalable, reliable, and flexible. You just tap into the resources you need precisely when you need them.
+
+You might be wondering, why do I need my own AWS account? 
+
+Well, it’s all about flexibility and control. With an AWS account, you can deploy apps, store data, handle databases, run analytics, and so much more, all with just a few clicks. The best part is that AWS scales with you. Whether you’re just experimenting with a small app or ready to launch something bigger, AWS adjusts to your needs.
+
+Now that you understand why setting up an AWS account is beneficial, let’s dive into the process. Creating an account is the starting point for providing access to AWS services and resources. Follow these steps to set up your account.
+
+Step 1: Register for an AWS account
+Start by navigating to the AWS registration page at 
+aws.amazon.com
+. Click the Create an AWS Account button.
+
+The AWS registration page.
+Step 2: Enter your account information
+In the Root user email address field, enter your email address, enter an AWS account name, and click Verify email address. AWS will then email a verification code to this address.
+
+Enter and confirm your Root user password and click Continue.
+
+The Sign up for AWS page.
+Image
+
+Step 3: Add your contact information
+After clicking Create an AWS Account, you can choose a Personal or Business account. As this setup is for an individual, select Personal.
+
+The Sign up for AWS page displaying the Contact information section.
+Read the AWS Customer Agreement, then check the box to accept, and click Continue. AWS sends a confirmation email to the address you registered.
+
+Step 4: Set up billing 
+Here, you’ll need to enter your payment information. AWS requires this to activate your account, even if you plan to use the Free Tier. The Free Tier has certain usage limits at no cost, so you can experiment without being charged if you stay within these limits.
+
+The Sign up for AWS page displaying the Billing information section.
+Step 5: Verify your contact number
+AWS asks for a mobile number to verify your identity. Choose your country code, enter a mobile number to receive a code immediately, and complete the CAPTCHA if prompted. You’ll receive an automated call or text shortly after with a PIN. Enter the PIN to verify, then click Continue.
+
+The Phone verification page.
+Step 6: Choose your support plan
+For now, select the Basic Support (Free Tier) plan. This plan is sufficient for starting and learning.
+
+The Support Plan page displaying the highlighted Basic Support plan.
+Step 7: Complete sign up
+Once you pick a support plan, you’ll see a confirmation page letting you know your account is being activated. This usually only takes a few minutes, but in some cases, it can take up to 24 hours.
+
+Configure billing settings 
+Once registered, you’ll be directed to the AWS Management Console. The dashboard is where you can manage your resources and services. Before diving into services, let’s check out a couple of essential settings:
+
+The AWS Management Console displaying the Dashboard.
+Access the billing dashboard
+From the top navigation bar, select your account name, then Billing Dashboard. Here, you can track your spending, set up alerts, and view usage statistics.
+
+The Billing Dashboard displaying the Billing and Cost Management Home page.
+Set up budget alerts
+Setting up budget alerts is essential to avoid unexpected charges. Navigate to Budgets in the billing dashboard and create a budget to receive notifications if you exceed Free Tier limits or hit a specific spending amount. This simple step can help you stay in control of your costs.
+
+The Billing dashboard displaying the AWS Budgets page.
+Understand AWS Free Tier
+The AWS Free Tier lets you explore and try out AWS services at no cost, up to specific usage limits for each service. It includes three free offers: 12 Months Free, Always Free, and Short-Term Free Trials.
+
+The AWS Free Tier flowchart illustrating the three free offers.
+12 Months Free: Certain services, like 750 hours of EC2 usage per month, are free for your first 12 months from the date you activate your account.
+
+Always Free: Some services stay free up to specific limits as long as you’re an AWS customer.
+
+Short-Term Free Trials: A few services are free for a limited time or up to a one-time usage limit.
+
+The Free Tier web page displaying the types of offers available.
+Check the Free Tier page for full details on what’s covered. If you exceed these limits, you’ll pay regular, pay-as-you-go rates for the additional usage.
+
+Manage user access: Root User vs. IAM Users
+After setting up billing preferences and understanding the AWS Free Tier, the next step is managing access and security. AWS accounts have different user types, each with specific roles and permissions. 
+
+Let’s explore the two main types you’ll encounter: the Root User and IAM Users.
+
+The User types illustrated in a flow chart.
+Root User
+The Root User is like the primary administrator for your AWS account, with full, unrestricted access to everything. This user can manage and modify all settings across the account, including billing and payment information. Only the Root User has permission to delete the AWS account entirely, making it a powerful role.
+
+The Root User privileges illustrated in a flow chart.
+Only the Root User can access a few security-specific settings, like setting up account-wide Multi-Factor Authentication (MFA). Finally, only the Root User has the authority to create and manage IAM users and roles, which lets you assign specific permissions to others working within the account. In short, the Root User has the keys to everything in AWS, so it’s best to use this account sparingly and keep it secure.
+
+IAM Users
+IAM (Identity and Access Management) Users are the everyday users within your AWS account, with access tailored to specific tasks or roles. Unlike the Root User, IAM Users have controlled permissions to decide exactly what they can and can’t do.  For example, one IAM User might only need permission to manage EC2 instances, while another might need access to an S3 bucket.
+
+IAM (Identity and Access Management) Users privileges illustrated in a flow chart.
+IAM Users cannot access billing or high-level account settings unless you grant it to them. They also can’t delete the account or make significant changes, which keeps things secure. You can customize IAM roles for different job functions, making it easy to manage access as your team or projects grow. Plus, you can add MFA for extra security on each IAM account.
+
+In short, IAM Users give you flexible, safe ways to delegate access without giving away the master keys of the Root User.
+
+Conclusion
+With your AWS account set up, you can access a vast ecosystem of cloud services that can power everything from small projects to enterprise-level applications. Setting up an account and configuring billing might seem simple, but this groundwork is essential for managing your AWS resources effectively. Next, you’ll explore specific services within AWS, diving into EC2 instances where you can launch virtual servers on demand. Great job getting through this initial setup!
+
+
+  
+
