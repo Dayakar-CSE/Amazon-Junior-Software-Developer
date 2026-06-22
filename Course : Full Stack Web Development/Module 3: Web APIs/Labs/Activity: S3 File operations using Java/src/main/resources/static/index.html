@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS S3 Bucket Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>AWS S3 Bucket Operations</h1>
+
+<div>
+    <!-- Create Bucket Form -->
+    <form id="createBucketForm" onsubmit="createBucket(event)">
+        <h3>Create Bucket</h3>
+        <label for="bucketName">Bucket Name:</label>
+        <input type="text" id="bucketName" name="bucketName" required>
+        <input type="submit" value="Create Bucket">
+        <div id="createBucketResult" class="result"></div>
+    </form>
+
+    <!-- Upload File Form -->
+    <form id="uploadFileForm" enctype="multipart/form-data" onsubmit="uploadFile(event)">
+        <h3>Upload File</h3>
+        <label for="uploadBucketName">Bucket Name:</label>
+        <input type="text" id="uploadBucketName" name="bucketName" required>
+
+        <label for="file">Select File:</label>
+        <input type="file" id="file" name="file" required>
+
+        <input type="submit" value="Upload File">
+        <div id="uploadFileResult" class="result"></div>
+    </form>
+
+    <!-- Download File Form -->
+    <form id="downloadFileForm" onsubmit="downloadFile(event)">
+        <h3>Download File</h3>
+        <label for="downloadBucketName">Bucket Name:</label>
+        <input type="text" id="downloadBucketName" name="bucketName" required>
+
+        <label for="downloadFileName">File Name:</label>
+        <input type="text" id="downloadFileName" name="fileName" required>
+
+        <input type="submit" value="Download File">
+        <div id="downloadFileResult" class="result"></div>
+    </form>
+
+    <!-- Delete File Form -->
+    <form id="deleteFileForm" onsubmit="deleteFile(event)">
+        <h3>Delete File</h3>
+        <label for="deleteBucketName">Bucket Name:</label>
+        <input type="text" id="deleteBucketName" name="bucketName" required>
+
+        <label for="deleteFileName">File Name:</label>
+        <input type="text" id="deleteFileName" name="fileName" required>
+
+        <input type="submit" value="Delete File">
+        <div id="deleteFileResult" class="result"></div>
+    </form>
+</div>
+
+<script>
+    async function createBucket(event) {
+        event.preventDefault();
+        const bucketName = document.getElementById('bucketName').value;
+
+        try {
+            const response = await fetch(`/api/s3/create-bucket/${bucketName}`, {
+                method: 'POST'
+            });
+            const result = await response.text();
+            document.getElementById('createBucketResult').innerText = result;
+        } catch (error) {
+            document.getElementById('createBucketResult').innerText = "Bucket creation failed: " + error.message;
+        }
+    }
+
+    async function uploadFile(event) {
+        event.preventDefault();
+        const bucketName = document.getElementById('uploadBucketName').value;
+        const file = document.getElementById('file').files[0];
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('bucketName', bucketName);
+
+        try {
+            const response = await fetch(`/api/s3/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            document.getElementById('uploadFileResult').innerText = result;
+        } catch (error) {
+            document.getElementById('uploadFileResult').innerText = "File upload failed: " + error.message;
+        }
+    }
+
+    async function downloadFile(event) {
+        event.preventDefault();
+        const bucketName = document.getElementById('downloadBucketName').value;
+        const fileName = document.getElementById('downloadFileName').value;
+
+        try {
+            const response = await fetch(`/api/s3/download/${bucketName}/${fileName}`, {
+                method: 'GET'
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+
+                window.URL.revokeObjectURL(url);
+                document.getElementById('downloadFileResult').innerText = "Download started.";
+            } else {
+                const errorText = await response.text();
+                document.getElementById('downloadFileResult').innerText = errorText;
+            }
+        } catch (error) {
+            document.getElementById('downloadFileResult').innerText = "File download failed: " + error.message;
+        }
+    }
+
+    async function deleteFile(event) {
+        event.preventDefault();
+        const bucketName = document.getElementById('deleteBucketName').value;
+        const fileName = document.getElementById('deleteFileName').value;
+
+        try {
+            const response = await fetch(`/api/s3/delete/${bucketName}/${fileName}`, {
+                method: 'DELETE'
+            });
+            const result = await response.text();
+            document.getElementById('deleteFileResult').innerText = result;
+        } catch (error) {
+            document.getElementById('deleteFileResult').innerText = "File deletion failed: " + error.message;
+        }
+    }
+</script>
+
+</body>
+</html>
